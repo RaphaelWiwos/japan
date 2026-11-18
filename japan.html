@@ -1,0 +1,365 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>東京・神立 滑雪行 2027</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: 單欄閱讀（max 860px），頂部黏著目錄；每日行程是「時刻表」樣式，路線用東京各線代表色小方塊標示 */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#18213a; --muted:#5a6680; --line:#d9dfe9;
+  --indigo:#1f3a6e; --accent:#c8402e; --warn-bg:#fff4e5; --warn-ink:#8a4b00; --ok:#1d7a52;
+  --chip-ink:#ffffff;
+  --display:"Noto Serif TC","Songti TC",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1524; --surface:#172036; --ink:#e6ebf5; --muted:#9aa6bf; --line:#2a3550;
+  --indigo:#9db8ef; --accent:#ff8a73; --warn-bg:#3a2a12; --warn-ink:#ffcf8a; --ok:#6fd3a5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1524; --surface:#172036; --ink:#e6ebf5; --muted:#9aa6bf; --line:#2a3550;
+  --indigo:#9db8ef; --accent:#ff8a73; --warn-bg:#3a2a12; --warn-ink:#ffcf8a; --ok:#6fd3a5; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto}
+a{color:var(--indigo)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.3}
+h1{font-size:clamp(28px,6vw,40px);font-weight:900;margin:0}
+h2{font-size:24px;margin:56px 0 12px;padding-top:8px;border-top:3px solid var(--ink)}
+h3{font-size:18px;margin:28px 0 8px}
+p{margin:8px 0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+header{padding-block:40px 20px}
+.kicker{font-size:13px;letter-spacing:.12em;color:var(--muted)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:20px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.fact b{display:block;font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:500}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  display:flex;gap:4px 14px;flex-wrap:wrap;padding-block:8px;font-size:14px}
+nav a{text-decoration:none;color:var(--ink);white-space:nowrap}
+nav a:hover{color:var(--accent)}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:6px;padding:10px 14px;margin:12px 0}
+.warn strong{color:inherit}
+.tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-weight:700;font-size:13px;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.date{white-space:nowrap;font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+.hot td{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.tag{display:inline-block;font-size:12px;padding:0 6px;border-radius:3px;border:1px solid currentColor;margin-left:4px;white-space:nowrap}
+.tag.bot{color:var(--ok)} .tag.man{color:var(--muted)} .tag.now{color:var(--accent)}
+/* 每日行程 */
+.day{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:16px 0;overflow:hidden}
+.day-h{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;padding:12px 16px;border-bottom:1px solid var(--line)}
+.day-h .d{font-family:var(--mono);font-size:22px;font-weight:500}
+.day-h .t{font-family:var(--display);font-size:18px;font-weight:700}
+.day-h .note{font-size:13px;color:var(--muted)}
+.slots{list-style:none;margin:0;padding:8px 16px 14px}
+.slots li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.slots li:last-child{border-bottom:0}
+.slots .tm{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;padding-top:1px}
+.slots .what{min-width:0}
+.move{font-size:14px;color:var(--muted)}
+.ln{display:inline-block;min-width:1.6em;text-align:center;font-family:var(--mono);font-size:11px;line-height:1.6;
+  padding:0 4px;border-radius:3px;color:var(--chip-ink);vertical-align:1px;margin-right:3px}
+.Z{background:#8f76d6}.JB{background:#c7a200}.JO{background:#0067c0}.A{background:#e85298}.E{background:#b6007a}
+.C{background:#e8590c}.JY{background:#5d9c1a}.M{background:#e0262f}.Y{background:#a88c4e}.U{background:#1e5aa8}
+.G{background:#f39700}.SH{background:#3b7f4a}.TS{background:#0f6fb5}.BUS{background:#55627a}.WALK{background:#8892a6}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border-top:1px solid var(--line)}
+.team > div{padding:0 0 4px;min-width:0}
+.team > div + div{border-left:1px solid var(--line)}
+.team h4{margin:10px 16px 0;font-size:14px;color:var(--indigo)}
+@media (max-width:600px){.team > div + div{border-left:0;border-top:1px solid var(--line)}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+ul.plain{padding-left:20px;margin:6px 0}
+ul.plain li{margin:3px 0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 14px;margin:8px 0}
+summary{cursor:pointer;font-weight:700}
+.src{font-size:12px;color:var(--muted);word-break:break-all}
+footer{margin-top:56px;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="kicker">2027.1.5（二）— 1.12（二）・8 人・大眾運輸</div>
+  <h1>東京・神立 滑雪行</h1>
+  <div class="facts">
+    <div class="fact"><b>去程</b>星宇 JX804　1/5 15:00 桃園 T1 → <span class="mono">19:00</span> 成田 T2</div>
+    <div class="fact"><b>回程</b>星宇 JX805　1/12 <span class="mono">20:10</span> 成田 T2 → 23:20 桃園 T1</div>
+    <div class="fact"><b>住宿</b>Super Hotel Tokyo Kinshicho Ekimae（錦糸町站北口步行 3 分，check-in 最晚 24:00）</div>
+    <div class="fact"><b>滑雪</b>神立雪場 Kandatsu・1/10 08:50 集合上課<br>雙板：呂 詹 鄭 公子哥／單板：李 郭</div>
+  </div>
+</header>
+
+<nav aria-label="目錄">
+  <a href="#tickets">購票時程</a><a href="#days">每日行程</a><a href="#spots">景點門票</a><a href="#ski">雪場</a><a href="#transit">交通卡・機場</a><a href="#know">出發前須知</a><a href="#todo">待確認</a>
+</nav>
+
+<!-- ============ 購票 ============ -->
+<section id="tickets">
+<h2>購票時程</h2>
+<p>時間都是<b>日本時間</b>（台灣時間減 1 小時）。<span class="tag bot">可自動</span>＝有買票程式，會停在付款頁讓你自己付款；<span class="tag man">手動</span>＝網站有排隊或 reCAPTCHA，只能人工買，程式只負責開賣提醒。</p>
+<div class="warn"><strong>12/10 10:00 有兩件事同時開賣</strong>：吉卜力 1 月票和 1/10 的新幹線指定席。請事先分給兩個不同的人負責。吉卜力每個帳號每月限買 6 張，8 人要用 2 個帳號下 2 筆。</div>
+<div class="tbl"><table>
+<thead><tr><th>開賣（JST）</th><th>項目</th><th>給哪天用</th><th>在哪買</th><th>注意</th></tr></thead>
+<tbody>
+<tr><td class="date">現在</td><td>teamLab Planets <span class="tag man">手動</span></td><td>1/12 11:00</td><td><a href="https://www.teamlab.art/jp/e/planets/">官網</a></td><td><b>現場不賣票</b>；不能退，官網 WEB 票入場 2 小時前可改期（最多 3 次，整筆一起改）；1 筆最多 10 張，8 人 1 筆就好</td></tr>
+<tr><td class="date">現在</td><td>東京晴空塔 <span class="tag man">手動</span></td><td>1/8 16:00</td><td><a href="https://www.tokyo-skytree.jp/">官網</a>／7-Eleven</td><td>入場 31 天前以前取消免費（1/8 入場 → 12/8 前），之後扣 20%；買了不能改，只能取消重買；網路 1 筆最多 8 人，剛好 1 筆</td></tr>
+<tr><td class="date">現在</td><td>六本木 Tokyo City View <span class="tag bot">可自動</span></td><td>1/7 18:00</td><td><a href="https://tcv.roppongihills.com/jp/">官網</a></td><td>不能改、不能退；網路 2,200 円；票綁在購票人帳號，<b>全團要一起入場</b>；現場只賣當天票</td></tr>
+<tr class="hot"><td class="date">12/1（預定）</td><td>神之湯「仮眠・リフト券パック」 <span class="tag man">手動</span></td><td>1/9 晚（6 人）</td><td><a href="https://www.kandatsu.com/kami-no-yu/">神立官網</a>（只能網路訂）</td><td>每人 12,000 円，6 人共 72,000 円（過夜＋<b>隔天 1 日纜車券</b>＋早餐，所以 6 人不用另買纜車券；董陳不滑雪，也不用買）；可加訂 M 個室（最多 6 人，6 人剛好住得下）8,000 円，6 人分攤約 1,340 円；入住前 2 天以前免費取消（1/7 前），前 1 天、當天或 no-show 收 100%；<b>有刺青原則上不能入場</b></td></tr>
+<tr><td class="date">12/1 05:00</td><td>皇居一般參觀（備選）</td><td>1/9</td><td>宮內廳官網</td><td>非必要，行程排的是免預約的東御苑</td></tr>
+<tr class="hot"><td class="date">12/9 10:00</td><td>上越新幹線（指定席） <span class="tag man">手動</span></td><td>1/9 去程 6 人</td><td>JR 東日本 Train Reservation</td><td>1 筆最多 6 人，剛好 1 筆；1/9–1/11 是三連休，請買指定席；開車前可改班次，退票每人收手續費；取票可能要出示護照</td></tr>
+<tr class="hot"><td class="date">12/10 10:00</td><td><b>三鷹之森吉卜力美術館</b> <span class="tag man">手動</span></td><td>1/7 10:00 或 11:00</td><td><a href="https://l-tike.com/st1/ghibli-en/Tt/Ttg010agreement/index">Lawson Ticket</a></td><td>有排隊系統；記名制，<b>購票人本人帶護照入場</b>；不能改、不能退；每帳號每月只能買 1 次、最多 6 張 → 8 人用 2 個帳號下 2 筆（例如 6＋2），兩位購票人當天都要到場；1,000 円</td></tr>
+<tr class="hot"><td class="date">12/10 10:00</td><td>上越新幹線（指定席） <span class="tag man">手動</span></td><td>1/10 董陳去程＋8 人回程</td><td>JR 東日本</td><td>和吉卜力同一時間開賣，請換人負責；去程董陳 2 人 1 筆；回程 8 人超過每筆 6 人，要分 2 筆（座位可能分開）</td></tr>
+<tr class="hot"><td class="date">12/23 00:00</td><td>SHIBUYA SKY <span class="tag man">手動</span></td><td>1/6 15:40</td><td><a href="https://www.shibuya-scramble-square.com/sky/">官網</a>（海外入口）</td><td>入場日前 2 週開賣；15:00 後 3,400 円；<b>海外入口買的票入場時要核對護照，8 人都要帶</b>，資料要和購票時填的一致；入場日前一天以前可免費取消（只能整筆取消），不能改期</td></tr>
+<tr><td class="date">隨時</td><td>Ginza Happo 海鮮自助餐（脫隊）</td><td>1/9 晚（董陳）</td><td>TableCheck</td><td>120 分 13,000 円（含飲料）；最後入場 20:00；遲到 10 分鐘可能被取消；網路訂滿可打 <span class="mono">03-6264-6825</span></td></tr>
+</tbody></table></div>
+<p class="move">不用買票：明治神宮、皇居東御苑、淺草寺、上野公園、戶越銀座、澀谷、秋葉原、東大。東京鐵塔 Main Deck（1,500 円）現場買就好。買票程式與各網站的逐步購票指南放在 <span class="mono">travel/ticket_bot/</span>。</p>
+</section>
+
+<!-- ============ 每日行程 ============ -->
+<section id="days">
+<h2>每日行程</h2>
+<p>步調：每天去 2–3 個區域，早上 9:30 左右出門，晚上 21:00 前回到飯店。所有路線都從錦糸町出發，<b>TST</b> 表示可以用 Tokyo Subway Ticket。</p>
+<div class="legend">
+  <span><span class="ln Z">Z</span>半藏門線</span><span><span class="ln JB">JB</span>總武線各停</span><span><span class="ln JO">JO</span>總武線快速</span>
+  <span><span class="ln A">A</span>都營淺草線</span><span><span class="ln E">E</span>大江戶線</span><span><span class="ln C">C</span>千代田線</span>
+  <span><span class="ln JY">JY</span>山手線</span><span><span class="ln M">M</span>丸之內線</span><span><span class="ln Y">Y</span>有樂町線</span><span><span class="ln U">U</span>百合海鷗號</span>
+  <span><span class="ln SH">新</span>上越新幹線</span><span><span class="ln BUS">巴</span>巴士</span><span><span class="ln WALK">步</span>步行</span>
+</div>
+
+<article class="day" id="d0105">
+  <div class="day-h"><span class="d">1/5 二</span><span class="t">抵達</span></div>
+  <ul class="slots">
+    <li><span class="tm">19:00</span><div class="what">成田 T2 落地，入境、領行李約 1 小時。旅客服務中心約 20:00 就關門，請到地下 1 樓「空港第2ビル」站的 <b>Welcome Suica 售票機</b>買卡；iPhone 也可以事先裝 Welcome Suica Mobile。</div></li>
+    <li><span class="tm">20:31</span><div class="what"><span class="ln JO">JO</span>總武線快速，空港第2ビル → 錦糸町 21:55，直達不用換車，IC 1,408 円。<div class="move">趕不上的話搭 21:17（22:27 到）。N'EX 不停錦糸町；機場巴士沒有錦糸町站。末班 23:00 要 0:21 才到，超過飯店 24:00 的 check-in 期限，搭到的話一定要先打給飯店（<span class="mono">03-6853-9000</span>）。</div></div></li>
+    <li><span class="tm">22:00</span><div class="what">飯店 check-in（最晚 24:00，超過會被視為取消）。站前拉麵或便利商店吃晚餐。</div></li>
+  </ul>
+</article>
+
+<article class="day" id="d0106">
+  <div class="day-h"><span class="d">1/6 三</span><span class="t">原宿・澀谷・新宿</span><span class="note">建議買 72 小時 TST（2,000 円），用 1/6–1/8</span></div>
+  <ul class="slots">
+    <li><span class="tm">09:30</span><div class="what"><span class="ln Z">Z</span>→ 表參道 <span class="ln C">C</span>→ 明治神宮前，約 33 分，252 円，TST 可用</div></li>
+    <li><span class="tm">10:00</span><div class="what"><b>明治神宮</b>：免費，1 月 6:40–16:20 開放。早上人比較少。</div></li>
+    <li><span class="tm">11:30</span><div class="what">竹下通、表參道散步，午餐</div></li>
+    <li><span class="tm">14:30</span><div class="what"><span class="ln WALK">步</span>走到澀谷逛街（約 20 分），或搭 1 站</div></li>
+    <li><span class="tm">15:40</span><div class="what"><b>SHIBUYA SKY</b>（需預約，日落 16:42）。不能帶帽子、腳架、自拍棒和大包包上頂樓，置物櫃在樓下。</div></li>
+    <li><span class="tm">17:30</span><div class="what"><span class="ln JY">JY</span>澀谷 → 新宿 7 分。逛歌舞伎町、吃晚餐。<b>不要跟拉客的人走</b>，有事打 110。</div></li>
+    <li><span class="tm">20:30</span><div class="what"><span class="ln JB">JB</span>新宿 → 錦糸町，直達 28 分，253 円</div></li>
+  </ul>
+</article>
+
+<article class="day" id="d0107">
+  <div class="day-h"><span class="d">1/7 四</span><span class="t">吉卜力・六本木・東京鐵塔</span><span class="note">晚上 20:00 後東京鐵塔有 Infinity Diamond Veil 點燈</span></div>
+  <ul class="slots">
+    <li><span class="tm">09:15</span><div class="what"><span class="ln JB">JB</span>錦糸町 → 三鷹，直達約 49 分，528 円（TST 不能用）<br><span class="ln BUS">巴</span>三鷹站南口搭社區巴士約 5 分（230 円），或沿玉川上水走 15 分</div></li>
+    <li><span class="tm">10:30</span><div class="what"><b>三鷹之森吉卜力美術館</b>，依票上時段入場，指定時間起 1 小時內要進場。大約逛 2 小時。</div></li>
+    <li><span class="tm">13:00</span><div class="what">走井之頭公園到吉祥寺，吃午餐</div></li>
+    <li><span class="tm">15:00</span><div class="what"><span class="ln JB">JB</span>吉祥寺 → 錦糸町直達約 50 分，<b>回飯店休息</b></div></li>
+    <li><span class="tm">17:30</span><div class="what"><span class="ln Z">Z</span>→ 青山一丁目 <span class="ln E">E</span>→ 六本木，約 31 分，317 円</div></li>
+    <li><span class="tm">18:00</span><div class="what"><b>六本木之丘 Tokyo City View</b>（52F，10:00–22:00），從這裡看點燈的東京鐵塔</div></li>
+    <li><span class="tm">19:30</span><div class="what"><span class="ln WALK">步</span>走 20 分到 <b>東京鐵塔</b> Main Deck（現場買票，1,500 円，開到 23:00）。晚餐在麻布台一帶吃。</div></li>
+    <li><span class="tm">21:00</span><div class="what"><span class="ln E">E</span>赤羽橋 → 清澄白河 <span class="ln Z">Z</span>→ 錦糸町，約 28 分</div></li>
+  </ul>
+</article>
+
+<article class="day" id="d0108">
+  <div class="day-h"><span class="d">1/8 五</span><span class="t">戶越銀座・淺草・晴空塔</span><span class="note">皇居東御苑今天休園</span></div>
+  <ul class="slots">
+    <li><span class="tm">09:30</span><div class="what"><span class="ln Z">Z</span>→ 押上 <span class="ln A">A</span>→ 戶越，約 39 分，359 円，TST 可用。<b>在押上要搭「西馬込」方向的車</b>，京急方向的車不停戶越。</div></li>
+    <li><span class="tm">10:30</span><div class="what"><b>戶越銀座商店街</b>：邊走邊吃，午餐就在這裡解決</div></li>
+    <li><span class="tm">12:45</span><div class="what"><span class="ln A">A</span>戶越 → 淺草，直達約 30 分</div></li>
+    <li><span class="tm">13:30</span><div class="what"><b>雷門、仲見世、淺草寺</b>（本堂開到 17:00）。御守和香油錢請準備現金。</div></li>
+    <li><span class="tm">15:30</span><div class="what"><span class="ln WALK">步</span>過隅田川走到晴空塔約 20 分，或 <span class="ln A">A</span>坐 2 站到押上</div></li>
+    <li><span class="tm">16:00</span><div class="what"><b>東京晴空塔</b>天望甲板（日落 16:44；16:00–19:00 人最多）。晚餐在晴空街道 Solamachi 吃。</div></li>
+    <li><span class="tm">19:30</span><div class="what"><span class="ln WALK">步</span>走 20 分回錦糸町，或 <span class="ln Z">Z</span>坐 1 站</div></li>
+  </ul>
+</article>
+
+<article class="day" id="d0109">
+  <div class="day-h"><span class="d">1/9 六</span><span class="t">皇居 → 分兩隊</span><span class="note">三連休第一天，新幹線很擠</span></div>
+  <ul class="slots">
+    <li><span class="tm">09:30</span><div class="what">全員：<span class="ln Z">Z</span>直達大手町，約 12 分，209 円</div></li>
+    <li><span class="tm">10:00</span><div class="what"><b>皇居東御苑</b>（免費，週六有開），之後在東京站吃午餐</div></li>
+  </ul>
+  <div class="team">
+    <div><h4>滑雪 6 人：呂 詹 李 郭 鄭 公子哥</h4>
+      <ul class="slots">
+        <li><span class="tm">—</span><div class="what">大行李留在飯店房間，只帶過夜背包和雪衣、手套等個人裝備</div></li>
+        <li><span class="tm">12:40</span><div class="what"><span class="ln SH">新</span>とき321 東京 → 越後湯澤 13:56（指定席 6,900 円）</div></li>
+        <li><span class="tm">14:00</span><div class="what">從越後湯澤站<b>西口</b>走 1 分鐘到 <b>iSKI</b>（7-11 隔壁）領雪具，雪季手續大約要 60–90 分。前一天 14:00 後可以免費提早取件。<b>請確認訂單日期</b>：訂 1/9–1/10 兩天的話，1/9 夜滑也能用；只訂 1/10 的話，1/9 夜滑要另外在 KSR 租。</div></li>
+        <li><span class="tm">15:30</span><div class="what"><span class="ln BUS">巴</span>搭 iSKI 免費接駁到神立（最晚 17:30 那班，要預約）；也可以走到東口搭神立的免費巴士，約 7 分</div></li>
+        <li><span class="tm">16:00</span><div class="what"><b>神の湯</b> check-in：泡湯、在帳篷區過夜</div></li>
+        <li><span class="tm">18:00</span><div class="what">想滑可以加買夜滑（4 小時券 3,900 円／全段 4,900 円，開到 02:00）。<b>早點睡，隔天 8:50 上課。</b></div></li>
+      </ul></div>
+    <div><h4>董、陳：留在東京</h4>
+      <ul class="slots">
+        <li><span class="tm">12:00</span><div class="what"><span class="ln WALK">步</span>從東京站走 10 分鐘到銀座逛街（想逛 Animate 的話，可以搭 <span class="ln M">M</span>到池袋，約 15 分）</div></li>
+        <li><span class="tm">17:30</span><div class="what"><b>Ginza Happo</b> 燒烤＋海鮮自助餐（要訂位，離新橋站比較近）</div></li>
+        <li><span class="tm">20:00</span><div class="what">早點回飯店，<b>隔天 05:25 出門</b></div></li>
+      </ul></div>
+  </div>
+</article>
+
+<article class="day" id="d0110">
+  <div class="day-h"><span class="d">1/10 日</span><span class="t">滑雪日</span><span class="note">08:50 雪場集合，上課到 12:00</span></div>
+  <ul class="slots">
+    <li><span class="tm">05:36</span><div class="what">董陳：<span class="ln JO">JO</span>錦糸町 → 東京 05:44，接 <span class="ln SH">新</span>06:24 <b>たにがわ71</b> → 越後湯澤 07:30。這班車開往 GALA 湯澤，<b>記得在越後湯澤下車</b>。<div class="move">下一班 06:08 的總武快速會在 06:16 到東京，換到新幹線月台大約要 10–15 分，接不上。備案：05:52 搭總武線各停，在秋葉原換車到上野，搭 06:30 從上野發的同一班車。</div></div></li>
+    <li><span class="tm">07:30</span><div class="what">董陳到越後湯澤，從東口搭神立免費接駁巴士（約 7 分；冬季首班還沒公布，春季版首班 8:05）。兩人不滑雪，不用急著趕 8:50。</div></li>
+    <li><span class="tm">08:50</span><div class="what">滑雪 6 人在雪場集合上課到 12:00（住神之湯，9:00 前 check-out 直接去上課）。董、陳不滑雪，在 GROUND BASE 休息、看大家上課。</div></li>
+    <li><span class="tm">12:00</span><div class="what">8 人約在山腳的 GROUND BASE 一起吃午餐（MID BASE 在山上，董陳不滑雪不方便上去）。下午滑雪 6 人自由滑；董、陳可以先搭神立接駁巴士回湯澤站，逛 CoCoLo 湯澤和ぽんしゅ館（可以試喝清酒）。</div></li>
+    <li><span class="tm">15:30</span><div class="what">滑雪 6 人收板、換衣服 → <span class="ln BUS">巴</span>搭 iSKI 接駁（最晚 17:30 時段，要預約）回越後湯澤站西口還雪具（最晚 18:30）。董、陳下午已先回站（不在 iSKI 訂單裡）。8 人在站內會合吃晚餐。</div></li>
+    <li><span class="tm">19:15</span><div class="what"><span class="ln SH">新</span><b>たにがわ414</b>（越後湯澤始發，比較有位子；8 人分 2 筆訂，座位可能分開）→ 東京 20:40 → <span class="ln JO">JO</span>錦糸町約 21:00<div class="move">如果早點還完雪具，可以改搭 17:41 とき332 或 18:05 たにがわ92。末班車是 22:25 とき346（東京 23:40 到，只剩約 11 分鐘換 23:51 的總武快速，不建議）。</div></div></li>
+  </ul>
+</article>
+
+<article class="day" id="d0111">
+  <div class="day-h"><span class="d">1/11 一</span><span class="t">秋葉原・東大・上野</span><span class="note">成人之日（國定假日），晚點出門</span></div>
+  <ul class="slots">
+    <li><span class="tm">10:30</span><div class="what"><span class="ln JB">JB</span>錦糸町 → 秋葉原，直達 8 分，199 円</div></li>
+    <li><span class="tm">10:45</span><div class="what"><b>秋葉原</b>：Animate（10:00 開）、K-BOOKS（假日 11:30 開）、Melonbooks、一番賞。午餐吃女僕咖啡：at-home cafe 入場費 850 円加套餐，限時 1 小時，不能拍女僕；或 maidreamin，官網有繁中。</div></li>
+    <li><span class="tm">14:15</span><div class="what"><span class="ln WALK">步</span>走到東大本鄉校區約 20 分</div></li>
+    <li><span class="tm">14:30</span><div class="what"><b>東京大學</b>：看三四郎池、安田講堂外觀。赤門在整修，要到 2027/9；照片只能自己留，不能上傳社群；假日食堂約 14:00 就關門。</div></li>
+    <li><span class="tm">15:30</span><div class="what"><span class="ln WALK">步</span>從池之端門出去，經過不忍池走到<b>上野公園</b>，再逛<b>阿美橫町</b>（日落 16:47）</div></li>
+    <li><span class="tm">18:00</span><div class="what">在上野吃晚餐 → <span class="ln JY">JY</span>到秋葉原換 <span class="ln JB">JB</span>回錦糸町，約 14 分</div></li>
+  </ul>
+</article>
+
+<article class="day" id="d0112">
+  <div class="day-h"><span class="d">1/12 二</span><span class="t">teamLab → 回台</span><span class="note">吉卜力、東御苑、上野動物園今天都休</span></div>
+  <ul class="slots">
+    <li><span class="tm">10:00</span><div class="what">check-out，大行李寄放在飯店櫃台（只能寄放當天；部分分店不提供，請先跟錦糸町店確認）</div></li>
+    <li><span class="tm">10:15</span><div class="what"><span class="ln Z">Z</span>→ 清澄白河 <span class="ln E">E</span>→ 月島 <span class="ln Y">Y</span>→ 豐洲 <span class="ln U">U</span>→ 新豐洲，約 34 分。也可以坐到豐洲站，再走約 10 分。</div></li>
+    <li><span class="tm">11:00</span><div class="what"><b>teamLab Planets</b>：全程赤腳，水深到膝蓋，請穿可以捲到膝蓋以上的褲子或短褲（有鏡面地板，穿裙子的人可以免費借短褲）。有免費置物櫃。大約 1.5–2 小時。</div></li>
+    <li><span class="tm">13:00</span><div class="what">在豐洲 LaLaport 吃午餐</div></li>
+    <li><span class="tm">14:00</span><div class="what">搭地鐵回錦糸町，約 30 分，到飯店領行李</div></li>
+    <li><span class="tm">15:24</span><div class="what"><span class="ln JO">JO</span>總武線快速「成田空港」行 → 空港第2ビル 16:40（備案：16:15 那班，17:40 到）</div></li>
+    <li><span class="tm">17:00</span><div class="what"><b>先辦退稅確認再托運行李</b>：退稅新制要在海關機台掃護照，顯示 GREEN 才算完成，所以免稅品要放隨身行李；新制手續請多抓 45–60 分。20:10 JX805 起飛。</div></li>
+  </ul>
+</article>
+
+<details><summary>沒有排進行程的景點和備選</summary>
+<ul class="plain">
+<li><b>晴空塔 Sky Restaurant 634</b>：沒有排。午餐 6,000 円起，晚餐 18,000 円起，另外要付天望甲板門票，有服裝規定。TableCheck 一筆最多 6 人，8 個人要分兩筆或打電話訂。想吃的話，可以把 1/8 的晴空塔改成晚餐 17:30 那一場（30 分鐘前到 4F 領票；7 天內取消收 10%）。</li>
+<li><b>皇居一般參觀（導覽）</b>：12/1 05:00 開放線上申請；1/10、1/11 沒有導覽。每人都要帶護照正本，送出後不能改日期、時段或人員。</li>
+<li><b>池袋 Animate 本店、K-BOOKS</b>：可以排在 1/9 下午，給董陳當備選。</li>
+<li><b>Lawson 和一番賞 NIKKE 第 8 彈</b>：2026/8 開賣，到 1 月可能已經賣完。出發前用 <a href="https://1kuji.com/shop_lists?product_id=nikke8">1kuji 店鋪地圖</a>查哪裡還有，再打電話確認。</li>
+<li><b>離飯店最近的 Animate</b>：Animate 錦糸町，11:00–20:00，晚上可以順路去。</li>
+</ul></details>
+</section>
+
+<!-- ============ 景點 ============ -->
+<section id="spots">
+<h2>景點門票與注意事項</h2>
+<div class="tbl"><table>
+<thead><tr><th>景點</th><th>票價（成人）</th><th>營業時間</th><th>注意事項</th></tr></thead>
+<tbody>
+<tr><td>三鷹之森吉卜力美術館</td><td>1,000 円</td><td>10:00–18:00；1/12 休館</td><td>只能在 Lawson 買，現場不賣；記名制，要帶護照；館內不能拍照</td></tr>
+<tr><td>SHIBUYA SKY</td><td>2,700 円（15:00 前）／3,400 円</td><td>10:00–22:30，最後入場 21:20</td><td>天氣不好時頂樓會關；不能帶帽子、腳架、大包包上去</td></tr>
+<tr><td>teamLab Planets</td><td>3,800 円起（浮動票價）</td><td>8:00–22:00，最後入場 21:00</td><td>現場不賣票；全程赤腳，水深到膝蓋，有置物櫃；穿裙子的人可以借短褲</td></tr>
+<tr><td>東京晴空塔</td><td>天望甲板 1,800 円起；套票 3,000 円起（浮動票價，現場加 500）</td><td>平日 10:00、週末假日 9:00 開，到 22:00（官網未確認）</td><td>不能帶入任一邊超過 60cm 的行李</td></tr>
+<tr><td>東京鐵塔</td><td>Main Deck 1,500 円；Top Deck 網路票 3,300 円</td><td>Main Deck 9:00–23:00，最後入場 22:30</td><td>週一、四 20:00–22:00 有特別點燈</td></tr>
+<tr><td>六本木 Tokyo City View</td><td>網路票 2,200 円</td><td>10:00–22:00（最後入場 21:30），1/11 也開</td><td>網路票不能改、不能退</td></tr>
+<tr><td>明治神宮</td><td>免費</td><td>1 月約 6:40–16:20</td><td>香油錢和御守要用現金</td></tr>
+<tr><td>皇居東御苑</td><td>免費</td><td>9:00–16:00（最後入園 15:30）；週一、週五休，1/8、1/12 休</td><td>入口在大手門（大手町站步行 5 分）</td></tr>
+<tr><td>淺草寺</td><td>免費</td><td>本堂 6:30–17:00</td><td>仲見世商店街約 17:00 收攤</td></tr>
+<tr><td>上野公園／上野動物園</td><td>公園免費／動物園 600 円</td><td>動物園 9:30–17:00；1/12 休</td><td>—</td></tr>
+<tr><td>東京大學本鄉校區</td><td>免費</td><td>可自由參觀</td><td>校外人士 11:30–13:30 不能用食堂，食堂內不能拍照</td></tr>
+<tr><td>Ginza Happo</td><td>13,000 円／120 分</td><td>11:30–22:00，最後入場 20:00</td><td>沒吃完的食物每 100g 加收 500 円</td></tr>
+</tbody></table></div>
+<p class="src">資料是 2026-11-05 查的，多數來自各景點官網。浮動票價和營業時間可能會變，出發前請再看一次官網。</p>
+</section>
+
+<!-- ============ 雪場 ============ -->
+<section id="ski">
+<h2>神立雪場</h2>
+<h3>新幹線</h3>
+<ul class="plain">
+<li>東京到越後湯澤：「とき」或「たにがわ」約 66–80 分。1/9、1/10 是繁忙期，指定席 6,900 円，自由席 6,370 円。錦糸町屬於「東京都區內」，車票直接從錦糸町買就好。</li>
+<li>えきねっと的「トクだ値」折扣票已經停售了。JR EAST PASS（5 日 35,000 円）對這趟行程非常不划算：8 人來回車票合計約 110,400 円，全員買 Pass 要 280,000 円。</li>
+</ul>
+<h3>雪場資訊</h3>
+<ul class="plain">
+<li><b>纜車票</b>：1/10 是特定日，窗口買 1 日券 6,800 円，網路 6,300 円，早割 4,500 円（12/10 前要買）。滑雪 6 人的 1/10 纜車券已含在神之湯套票裡，董陳不滑雪，所以<b>全團都不用另買 1/10 纜車券</b>；只有 1/9 想夜滑才要另買。夜滑 18:00–02:00，1/9 和 1/10 都有。</li>
+<li><b>神の湯</b>：只有週五、週六可以過夜，1/9 剛好是週六。15:00 check-in，隔天 9:00 前 check-out。入住 2 天前以前免費取消，之後收 100%。有刺青原則上不能入場。</li>
+<li><b>iSKI 越後湯澤店</b>：站<b>西口</b>出來右轉約 1 分（7-11 隔壁），12/15–3/21 每天 7:30–19:00，<b>最晚 18:30 歸還</b>；前一天 14:00 後可免費提早取件。免費接駁可到神立，要在預約雪具時一起填（每人每日平均消費滿台幣 700 元才能預約），時段是 7:30–10:30 和 15:30–17:30，一車最多 7 人，<b>夜滑後沒有接駁</b>。店內可寄放行李，每人 1 件。取消：21 天前退 100%、14 天前 70%、7 天前 50%、3 天前 20%，3 天內不退。</li>
+<li><b>雪場自營 KSR 租借</b>：GROUND BASE 3F，週末假日 6:45–17:00，夜滑時段 17:45–02:30；不能預約，現場辦，要帶護照。</li>
+<li><b>置物櫃不能用超過 1 天</b>：過夜的 6 個人要把東西帶進神の湯。</li>
+<li><b>接駁巴士</b>：從越後湯澤站<b>東口</b>出發，約 7 分，免費。冬季時刻表 12 月才會公布（春季版是每 20 分一班）。iSKI 在<b>西口</b>，有自己的接駁車。</li>
+<li><b>付款</b>：售票處、租借、餐廳、神の湯都可以刷卡或用 Suica；置物櫃的付款方式未確認，帶一些 100 円硬幣備用。</li>
+<li><b>吃飯</b>：GROUND BASE 的 SNOW CAFÉ 週六開到 25:00，週日只開到 17:30。</li>
+</ul>
+<h3>行李</h3>
+<ul class="plain">
+<li>大行李留在東京的飯店房間，不用帶上山。</li>
+<li>如果要寄雪具：用黑貓宅急便寄到雪場的宅配櫃台。關東寄新潟，180 尺寸 3,680 円，要套雪具專用袋，必須在使用前一天送達，所以 1/9 用的最晚 1/7 寄出。</li>
+</ul>
+<div class="warn">保險：台灣有些旅平險把滑雪列為不保的項目，雪道外（off-piste）通常也不保。請逐條看保單，也確認信用卡附贈的保險要怎樣才會生效。</div>
+</section>
+
+<!-- ============ 交通 ============ -->
+<section id="transit">
+<h2>交通卡與機場</h2>
+<ul class="plain">
+<li><b>Welcome Suica</b>：實體卡不用押金，可以用 28 天，在機場站的專用售票機買。iPhone 可以改用 Welcome Suica Mobile（可用 180 天）。</li>
+<li><b>Tokyo Subway Ticket</b>：24 小時 1,000 円、48 小時 1,500 円、72 小時 2,000 円，買的時候要出示護照。只能搭東京 Metro 和都營地下鐵，不能搭 JR、百合海鷗號、東急。建議 1/6–1/8 用 72 小時票。</li>
+<li><b>JR 都區內パス</b>（870 円）：三鷹不在使用範圍內，這趟用不划算。</li>
+<li><b>從機場到錦糸町</b>：總武線快速可以直達。N'EX 會繞到東京站再折回來；機場巴士（TYO-NRT）只到東京站，沒有錦糸町站；スカイツリーシャトル機場發的末班是 18:15／18:20，1/5 搭不到。</li>
+<li><b>回程</b>：15:24 從錦糸町出發，16:40 到機場，離起飛還有 3.5 小時，可以留時間辦退稅。</li>
+</ul>
+</section>
+
+<!-- ============ 須知 ============ -->
+<section id="know">
+<h2>出發前須知</h2>
+<ul class="plain">
+<li><b>入境</b>：台灣護照免簽（觀光最多 90 天），護照效期最好還剩 6 個月以上。在 Visit Japan Web 填好，入境審查和海關申報共用一個 QR Code。<b>JESTA（日本電子旅行授權）要到 2028 年度才上路，這次不用申請</b>，要你付費申請 JESTA 的網站都是詐騙。</li>
+<li><b>退稅（2026/11/1 起改成先付後退）</b>：同一個人、同一家店、同一天買滿未稅 5,000 円以上。結帳時先付含稅價，回程托運行李前到機場掃護照，顯示 GREEN 就完成，店家之後才退錢。在日本開封或用掉的東西不能退；同一張收據少一件，整張都不退。</li>
+<li><b>天氣</b>：東京 1 月平均 1–10℃，風大，室內暖氣很強，建議洋蔥式穿法。越後湯澤平均 -3–3℃，常下大雪；雪場白天大約 -3 到 -8℃，夜滑更冷。</li>
+<li><b>網路</b>：1/9 會分兩隊，所以每個人都要有網路，建議每人一張 eSIM，再帶一台分享器備用。</li>
+<li><b>電和錢</b>：電壓 100V，插頭跟台灣一樣是雙扁腳，不用轉接頭；但三孔（有接地腳）的插頭很多插座插不進去，要帶轉接頭。神社、小店請帶現金；7-11 的 ATM 可以用台灣的卡領錢。</li>
+<li><b>禮儀</b>：泡溫泉要全裸，毛巾不能放進池子裡。電車上不要講電話。垃圾帶回飯店丟。</li>
+</ul>
+<h3>緊急電話</h3>
+<div class="tbl"><table style="min-width:420px">
+<tbody>
+<tr><td>警察／火災、救護車</td><td class="mono">110 ／ 119</td></tr>
+<tr><td>東京非緊急醫療諮詢（24 小時，以日語為主）</td><td class="mono">#7119 ／ 03-3212-2323</td></tr>
+<tr><td>JNTO 訪日外國人熱線（24 小時，有中文）</td><td class="mono">050-3816-2787</td></tr>
+<tr><td>台北駐日經濟文化代表處（上班時間）</td><td class="mono">03-3280-7811</td></tr>
+<tr><td>駐日代表處急難救助（只限危及人身安全）</td><td class="mono">080-1009-7179 ／ 080-1009-7436</td></tr>
+<tr><td>駐日代表處夜間警衛室</td><td class="mono">03-3280-7917</td></tr>
+<tr><td>外交部全球免付費專線（從日本撥；用日本 eSIM 能否撥通未確認）</td><td class="mono">001-010-800-0885-0885 ／ 0033-010-800-0885-0885</td></tr>
+</tbody></table></div>
+<p class="move">1/9–1/11 是週末加國定假日，代表處很可能不上班。護照請收好，萬一在這幾天弄丟，補辦會很趕。</p>
+</section>
+
+<!-- ============ 待確認 ============ -->
+<section id="todo">
+<h2>出發前還要確認</h2>
+<ul class="plain">
+<li><b>iSKI 訂單日期</b>：確認 6 人的雪具是從 1/9 下午開始租（1/9 想夜滑就需要），還是只訂 1/10。</li>
+<li>神立冬季接駁巴士時刻表，12 月會公布；也確認夜滑時段有沒有接駁，以及董陳 1/10 早上 07:30 到站後的第一班和下午回站的班次。</li>
+<li>神之湯要不要加訂 M 個室（最多 6 人，滑雪 6 人剛好）；12/1 開放預約時一起決定。</li>
+<li>吉卜力 8 人分 2 個帳號買：決定由哪兩位當購票人（兩人 1/7 都要帶護照到場）。</li>
+<li>2027 年 1 月的實際列車時刻。目前用的是 2026/11 版時刻表，訂位時再對一次。</li>
+<li>晴空塔 1 月的每日營業時間。</li>
+<li>Melonbooks 秋葉原的營業時間。</li>
+<li>Super Hotel 錦糸町店 1/12 退房後能不能寄放行李。</li>
+<li>錦糸町站、越後湯澤站有沒有大型置物櫃，以及成田機場寄放行李的價格。</li>
+<li>星宇航空的開櫃時間。</li>
+<li>保單的滑雪條款（負責人：鄭）。</li>
+</ul>
+</section>
+
+<footer>資料整理：2026-11-05。每份研究都經過審核 agent 逐輪查核到收斂；原始資料與來源連結在 travel/work/*.md。</footer>
+</div>
+
+</body></html>
